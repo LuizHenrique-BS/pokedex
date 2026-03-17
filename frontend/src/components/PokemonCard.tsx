@@ -8,10 +8,10 @@ interface PokemonCardProps {
 export const PokemonCard = ({ pokemon }: PokemonCardProps) => {
   return (
     <div className="w-full max-w-4xl bg-(--bg) border border-(--border) rounded-3xl p-6 md:p-10 shadow-(--shadow) flex flex-col md:flex-row gap-10 animate-in fade-in zoom-in duration-300">
-      {/* Esquerda: Image Section */}
+      {/* Left: Image Section */}
       <div className="flex-1 flex flex-col items-center justify-center min-h-[300px]">
         <div className="relative flex items-center justify-center w-full h-full">
-          {/* Glow de fundo */}
+          {/* Background Glow */}
           <div className="absolute w-40 h-40 bg-(--accent) blur-[80px] opacity-20"></div>
 
           <img
@@ -22,7 +22,7 @@ export const PokemonCard = ({ pokemon }: PokemonCardProps) => {
         </div>
       </div>
 
-      {/* Direita: Info Section */}
+      {/* Right: Info Section */}
       <div className="flex-1 flex flex-col gap-6">
         <div className="flex justify-between items-start">
           <div>
@@ -32,7 +32,7 @@ export const PokemonCard = ({ pokemon }: PokemonCardProps) => {
             </p>
           </div>
 
-          {/* Badge de Tipo - Agora fixa e pequena */}
+          {/* Badge Type */}
           <div className="flex gap-2">
             {pokemon.types.map((type) => (
               <span
