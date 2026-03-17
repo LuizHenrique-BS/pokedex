@@ -89,7 +89,7 @@ PokeDex/
 ---
 
 ## 🛡️ Licença
-Este projeto está sob a licença de código aberto. Veja o arquivo [LICENSE](LICENSE) para mais detalhes.
+Este projeto está sob a licença de código aberto.
 
 ---
 
