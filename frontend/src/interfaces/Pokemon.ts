@@ -1,4 +1,12 @@
-// Defina a interface baseada no que o seu .NET retorna (PokemonDto)
+export interface PokemonStats {
+  hp: number;
+  attack: number;
+  defense: number;
+  "special-attack": number;
+  "special-defense": number;
+  speed: number;
+}
+
 export interface PokemonData {
   id: number;
   name: string;
@@ -8,5 +16,5 @@ export interface PokemonData {
   weight: number;
   description: string;
   games: string[];
-  stats: Record<string, number>;
+  stats: PokemonStats;
 }
