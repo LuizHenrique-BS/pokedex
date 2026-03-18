@@ -7,6 +7,24 @@ namespace PokeDex.Infrastructure.PokeApi.Models
     {
         [JsonPropertyName("flavor_text_entries")]
         public List<FlavorTextEntry> FlavorTextEntries { get; set; }
+
+        [JsonPropertyName("varieties")]
+        public List<VarietyEntry> Varieties { get; set; }
+    }
+
+    public class VarietyEntry
+    {
+        [JsonPropertyName("is_default")]
+        public bool IsDefault { get; set; }
+
+        [JsonPropertyName("pokemon")]
+        public PokemonVariety Pokemon { get; set; }
+    }
+
+    public class PokemonVariety
+    {
+        [JsonPropertyName("name")]
+        public string Name { get; set; }
     }
 
     public class FlavorTextEntry

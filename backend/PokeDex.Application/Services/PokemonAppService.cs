@@ -31,6 +31,8 @@ namespace PokeDex.Application.Services
                 Description = entity.Description.Replace("\n", " ").Replace("\f", " "), // Clean up newlines and form feeds
                 Games = entity.Games,
                 Stats = entity.Stats,
+                Moves = entity.Moves,
+                AlternativeForms = entity.AlternativeForms
             };
         }
     }

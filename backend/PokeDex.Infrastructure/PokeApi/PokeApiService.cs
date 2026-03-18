@@ -45,7 +45,14 @@ namespace PokeDex.Infrastructure.PokeApi
 
                     Description = speciesData?.FlavorTextEntries
                         .FirstOrDefault(f => f.Language.Name == "en")?.FlavorText
-                        ?? "No description available."
+                        ?? "No description available.",
+
+                    Moves = pokeData.Moves.Take(10).Select(m => m.Move.Name).ToList(),
+
+                    AlternativeForms = speciesData?.Varieties
+                        .Where(v => !v.IsDefault)
+                        .Select(v => v.Pokemon.Name)
+                        .ToList() ?? new List<string>()
                 };
             }
             catch (HttpRequestException ex)
