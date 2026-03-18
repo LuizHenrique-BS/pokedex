@@ -63,6 +63,17 @@ export const PokemonCard = ({ pokemon }: PokemonCardProps) => {
           </p>
         </div>
 
+        <div className="grid grid-cols-2 gap-6 py-4 border-y border-(--border)">
+          <div className="text-center md:text-left">
+            <span className="block text-[10px] uppercase font-bold text-(--text)">Height</span>
+            <span className="text-xl font-medium">{pokemon?.height} m</span>
+          </div>
+          <div className="text-center md:text-left">
+            <span className="block text-[10px] uppercase font-bold text-(--text)">Weight</span>
+            <span className="text-xl font-medium">{pokemon?.weight} kg</span>
+          </div>
+        </div>
+
         <div>
           <h3 className="text-sm uppercase font-black text-(--text) mb-4 tracking-widest">
             Base Stats

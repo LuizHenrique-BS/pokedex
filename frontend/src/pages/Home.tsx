@@ -5,6 +5,7 @@ import { SearchBar } from "../components/SearchBar";
 import { PokemonCard } from "../components/PokemonCard";
 import { PokemonCardSkeleton } from "../components/PokemonCardSkeleton";
 import { ErrorState } from "../components/ErrorState";
+import { PokemonGames } from "../components/PokemonGames";
 
 export const Home = () => {
   const [pokemon, setPokemon] = useState<PokemonData | null>(null);
@@ -43,7 +44,12 @@ export const Home = () => {
       {!loading && errorType && <ErrorState errorType={errorType} />}
 
       {/* 3. SUCESS STATE */}
-      {!loading && !errorType && pokemon && <PokemonCard pokemon={pokemon} />}
+      {!loading && !errorType && pokemon && (
+        <>
+          <PokemonCard pokemon={pokemon} />
+          <PokemonGames games={pokemon?.games} />
+        </>
+      )}
     </main>
   );
 };
