@@ -1,5 +1,6 @@
 import type { PokemonData } from "../interfaces/Pokemon";
 import { StatBar } from "./StatBar";
+import { getTypeStyles } from "../constants/typeColors";
 
 interface PokemonCardProps {
   pokemon: PokemonData;
@@ -34,14 +35,22 @@ export const PokemonCard = ({ pokemon }: PokemonCardProps) => {
 
           {/* Badge Type */}
           <div className="flex gap-2">
-            {pokemon.types.map((type) => (
-              <span
-                key={type}
-                className="px-3 py-1 rounded-md bg-(--accent-bg) text-(--accent) border border-(--accent-border) text-[10px] font-black uppercase tracking-tighter"
-              >
-                {type}
-              </span>
-            ))}
+            {pokemon.types.map((type) => {
+              const styles = getTypeStyles(type);
+              return (
+                <span
+                  key={type}
+                  style={{ 
+                    backgroundColor: styles.bg, 
+                    color: styles.text, 
+                    borderColor: styles.border 
+                  }}
+                  className="px-3 py-1 rounded-md border text-[10px] font-black uppercase tracking-tighter"
+                >
+                  {type}
+                </span>
+              );
+            })}
           </div>
         </div>
 
