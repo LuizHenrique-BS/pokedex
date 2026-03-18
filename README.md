@@ -17,9 +17,9 @@ Construído utilizando os princípios da **Clean Architecture** (Arquitetura Lim
 
 ### 🎨 Frontend (React + Vite)
 Uma interface rápida e responsiva construída com as ferramentas mais modernas do ecossistema JavaScript.
-- **React 18** com **TypeScript**.
-- **Tailwind CSS** para estilização utilitária e responsiva.
-- **Vite** para um build extremamente rápido.
+- **React 19** com **TypeScript**.
+- **Tailwind CSS 4** para estilização utilitária e responsiva.
+- **Vite 8** para um build extremamente rápido.
 
 ---
 
