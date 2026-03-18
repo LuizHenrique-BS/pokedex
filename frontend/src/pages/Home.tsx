@@ -4,6 +4,7 @@ import { type PokemonData } from '../interfaces/Pokemon';
 import { SearchBar } from '../components/SearchBar';
 import { PokemonCard } from '../components/PokemonCard';
 import { PokemonCardSkeleton } from '../components/PokemonCardSkeleton';
+import { ErrorState } from '../components/ErrorState';
 
 export const Home = () => {
   const [pokemon, setPokemon] = useState<PokemonData | null>(null);
@@ -19,8 +20,12 @@ export const Home = () => {
     try {
       const data = await getPokemon(name);
       setPokemon(data);
-    } catch (err) {
-      setError("Pokémon not found. Try another name!");
+    } catch (err: unknown) {
+      if (err instanceof Error) {
+        setError(err.message);
+      } else {
+        setError("An unexpected error occurred.");
+      }
       setPokemon(null);
       console.error(err);
     } finally {
@@ -36,16 +41,15 @@ export const Home = () => {
   return (
     <main className="flex flex-col items-center p-6 gap-8">
       <SearchBar onSearch={fetchData} loading={loading} />
-      
-      {error && (
-        <p className="text-red-500 font-medium animate-bounce">{error}</p>
-      )}
 
-      {/* If loading, show the skeleton */}
+      {/* 1. LOADING STATE */}
       {loading && <PokemonCardSkeleton />}
 
-      {/* If finished loading and there is a pokemon, show the actual card */}
-      {!loading && pokemon && <PokemonCard pokemon={pokemon} />}
+      {/* 2. ERROR STATE (Only shows if not loading) */}
+      {!loading && error && <ErrorState message={error} />}
+
+      {/* 3. SUCESS STATE */}
+      {!loading && !error && pokemon && <PokemonCard pokemon={pokemon} />}
     </main>
   );
 };

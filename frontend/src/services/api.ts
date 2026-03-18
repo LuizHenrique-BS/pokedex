@@ -1,20 +1,8 @@
-import axios, { AxiosError } from 'axios';
-
-// Defina a interface baseada no que o seu .NET retorna (PokemonDto)
-export interface PokemonData {
-  id: number;
-  name: string;
-  types: string[];
-  imageUrl: string;
-  height: number;
-  weight: number;
-  description: string;
-  games: string[];
-  stats: Record<string, number>;
-}
+import axios, { AxiosError } from "axios";
+import { HttpStatus } from "../enums/HttpStatus";
 
 const api = axios.create({
-  baseURL: 'https://localhost:7181/api', // Ajuste para a sua porta real
+  baseURL: "https://localhost:7181/api", // That same API link in launchSettings
 });
 
 export const getPokemon = async (name: string) => {
@@ -23,9 +11,15 @@ export const getPokemon = async (name: string) => {
     return response.data;
   } catch (error) {
     const axiosError = error as AxiosError;
-    if (axiosError.response?.status === 404) {
-      throw new Error('Pokémon not Found!');
+
+    if (axiosError.response) {
+      if (axiosError.response.status === HttpStatus.NOT_FOUND) {
+        throw new Error("Pokémon not Found. Try another name!");
+      } else if (axiosError.response.status === HttpStatus.INTERNAL_SERVER_ERROR) {
+        throw new Error("Server internal Error!");
+      }
     }
-    throw new Error('An error occurred while retrieving the data.');
+    
+    throw new Error("Network error! Please check your connection.");
   }
 };
