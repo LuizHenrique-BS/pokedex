@@ -1,5 +1,4 @@
-import axios, { AxiosError } from "axios";
-import { HttpStatus } from "../enums/HttpStatus";
+import axios, { AxiosError } from 'axios';
 
 const api = axios.create({
   baseURL: "https://localhost:7181/api", // That same API link in launchSettings
@@ -11,15 +10,19 @@ export const getPokemon = async (name: string) => {
     return response.data;
   } catch (error) {
     const axiosError = error as AxiosError;
-
+    
     if (axiosError.response) {
-      if (axiosError.response.status === HttpStatus.NOT_FOUND) {
-        throw new Error("Pokémon not Found. Try another name!");
-      } else if (axiosError.response.status === HttpStatus.INTERNAL_SERVER_ERROR) {
-        throw new Error("Server internal Error!");
+      const status = axiosError.response.status;
+
+      if (status === 404) {
+        throw new Error("POKEMON_NOT_FOUND");
+      }
+      
+      if (status >= 500) {
+        throw new Error("SERVER_ERROR");
       }
     }
     
-    throw new Error("Network error! Please check your connection.");
+    throw new Error("NETWORK_ERROR");
   }
 };
