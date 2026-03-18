@@ -3,6 +3,7 @@ import { getPokemon } from "../services/api";
 import { type PokemonData } from "../interfaces/Pokemon";
 import { SearchBar } from "../components/SearchBar";
 import { PokemonCard } from "../components/PokemonCard";
+import { PokemonExtraInfo } from "../components/PokemonExtraInfo";
 import { PokemonCardSkeleton } from "../components/PokemonCardSkeleton";
 import { ErrorState } from "../components/ErrorState";
 import { PokemonGames } from "../components/PokemonGames";
@@ -41,12 +42,18 @@ export const Home = () => {
       {loading && <PokemonCardSkeleton />}
 
       {/* 2. ERROR STATE (Only shows if not loading) */}
-      {!loading && errorType && <ErrorState errorType={errorType} />}
+      {!loading && errorType && (
+        <>
+          <p className="text-red-500 font-medium animate-bounce">Oops! Something went wrong</p>
+          <ErrorState errorType={errorType} />
+        </>
+      )}
 
       {/* 3. SUCESS STATE */}
       {!loading && !errorType && pokemon && (
         <>
           <PokemonCard pokemon={pokemon} />
+          <PokemonExtraInfo moves={pokemon.moves} alternativeForms={pokemon.alternativeForms} />
           <PokemonGames games={pokemon?.games} />
         </>
       )}

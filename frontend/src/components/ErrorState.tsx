@@ -7,7 +7,7 @@ export const ErrorState = ({ errorType }: ErrorStateProps) => {
     POKEMON_NOT_FOUND: {
       emoji: "🔍",
       title: "Pokémon not found",
-      text: "We couldn't find a Pokémon with that name. Please check your spelling and try again."
+      text: "We couldn't find a Pokémon with that name. It may not be in the PokeAPI database, or you may have entered the Pokémon's name incorrectly."
     },
     SERVER_ERROR: {
       emoji: "☁️",
