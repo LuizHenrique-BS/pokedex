@@ -62,30 +62,30 @@ export const PokemonCard = ({ pokemon }: PokemonCardProps) => {
           </div>
         </div>
       
-      {/* Weakness Badges */}
-      <div className="flex flex-col items-center border-t border-(--border) pt-4 gap-1">
-        <span className="text-[10px] uppercase font-black text-(--text) tracking-widest">
-          Weaknesses
-        </span>
-        <div className="flex flex-wrap gap-2 justify-center">
-          {pokemon.weaknesses.map((type) => {
-            const styles = getTypeStyles(type);
-            return (
-              <span
-                key={type}
-                style={{ 
-                  backgroundColor: styles.bg, 
-                  color: styles.text, 
-                  borderColor: styles.border 
-                }}
-                className="px-3 py-1 rounded-md border text-[10px] font-black uppercase tracking-tighter"
-              >
-                {type}
-              </span>
-            );
-          })}
+        {/* Weakness Badges */}
+        <div className="flex flex-col items-center border-t border-(--border) pt-4 gap-1">
+          <span className="text-[10px] uppercase font-black text-(--text) tracking-widest">
+            Weaknesses
+          </span>
+          <div className="flex flex-wrap gap-2 justify-center">
+            {pokemon.weaknesses.map((type) => {
+              const styles = getTypeStyles(type);
+              return (
+                <span
+                  key={type}
+                  style={{ 
+                    backgroundColor: styles.bg, 
+                    color: styles.text, 
+                    borderColor: styles.border 
+                  }}
+                  className="px-3 py-1 rounded-md border text-[10px] font-black uppercase tracking-tighter"
+                >
+                  {type}
+                </span>
+              );
+            })}
+          </div>
         </div>
-      </div>
 
         <div className="border-t border-(--border) pt-4">
           <h3 className="text-[10px] uppercase font-black text-(--text) mb-2 tracking-widest">
