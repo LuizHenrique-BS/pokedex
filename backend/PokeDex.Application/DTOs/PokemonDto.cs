@@ -14,5 +14,7 @@ namespace PokeDex.Application.DTOs
         public List<string> Games { get; set; } = new();
         public List<string> Moves { get; set; } = new();
         public List<string> AlternativeForms { get; set; } = new();
+        public string Generation { get; set; } = string.Empty;
+        public List<string> Weaknesses { get; set; } = new();
     }
 }

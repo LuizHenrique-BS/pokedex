@@ -16,5 +16,7 @@ namespace PokeDex.Domain.Entities
         public Dictionary<string, int> Stats { get; set; }
         public List<string> Moves { get; set; } = new();
         public List<string> AlternativeForms { get; set; } = new();
+        public string Generation { get; set; } = string.Empty;
+        public List<string> Weaknesses { get; set; } = new();
     }
 }

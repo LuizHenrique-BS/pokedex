@@ -10,6 +10,15 @@ namespace PokeDex.Infrastructure.PokeApi.Models
 
         [JsonPropertyName("varieties")]
         public List<VarietyEntry> Varieties { get; set; }
+
+        [JsonPropertyName("generation")]
+        public GenerationDetail Generation { get; set; }
+    }
+
+    public class GenerationDetail
+    {
+        [JsonPropertyName("name")]
+        public string Name { get; set; }
     }
 
     public class VarietyEntry

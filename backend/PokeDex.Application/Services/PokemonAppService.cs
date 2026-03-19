@@ -32,8 +32,18 @@ namespace PokeDex.Application.Services
                 Games = entity.Games,
                 Stats = entity.Stats,
                 Moves = entity.Moves,
-                AlternativeForms = entity.AlternativeForms
+                AlternativeForms = entity.AlternativeForms,
+                Generation = FormatGeneration(entity.Generation),
+                Weaknesses = entity.Weaknesses
             };
+        }
+
+        private string FormatGeneration(string gen)
+        {
+            if (string.IsNullOrEmpty(gen) || !gen.Contains("-")) return gen;
+            
+            var parts = gen.Split('-');
+            return $"{char.ToUpper(parts[0][0])}{parts[0].Substring(1)} {parts[1].ToUpper()}";
         }
     }
 }
