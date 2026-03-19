@@ -19,4 +19,6 @@ export interface PokemonData {
   stats: PokemonStats;
   moves: string[];
   alternativeForms: string[];
+  generation: string;
+  weaknesses: string[];
 }

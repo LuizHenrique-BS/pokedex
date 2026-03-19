@@ -28,31 +28,64 @@ export const PokemonCard = ({ pokemon }: PokemonCardProps) => {
         <div className="flex justify-between items-start">
           <div>
             <h2 className="text-4xl font-bold capitalize">{pokemon.name}</h2>
-            <p className="text-(--text) font-mono text-sm">
-              #{pokemon.id.toString().padStart(3, "0")}
-            </p>
+            <div className="flex flex-col gap-4 items-center mt-1">
+              <p className="text-(--text) font-mono text-sm">
+                #{pokemon.id.toString().padStart(3, "0")}
+              </p>
+              <span className="text-[10px] bg-white/10 px-2 py-0.5 rounded text-(--text) font-bold uppercase tracking-widest">
+                {pokemon.generation}
+              </span>
+            </div>
           </div>
 
           {/* Badge Type */}
-          <div className="flex gap-2">
-            {pokemon.types.map((type) => {
-              const styles = getTypeStyles(type);
-              return (
-                <span
-                  key={type}
-                  style={{ 
-                    backgroundColor: styles.bg, 
-                    color: styles.text, 
-                    borderColor: styles.border 
-                  }}
-                  className="px-3 py-1 rounded-md border text-[10px] font-black uppercase tracking-tighter"
-                >
-                  {type}
-                </span>
-              );
-            })}
+          <div className="flex flex-col items-end gap-4">
+            <div className="flex gap-2">
+              {pokemon.types.map((type) => {
+                const styles = getTypeStyles(type);
+                return (
+                  <span
+                    key={type}
+                    style={{ 
+                      backgroundColor: styles.bg, 
+                      color: styles.text, 
+                      borderColor: styles.border 
+                    }}
+                    className="px-3 py-1 rounded-md border text-[10px] font-black uppercase tracking-tighter"
+                  >
+                    {type}
+                  </span>
+                );
+              })}
+            </div>
+
           </div>
         </div>
+      
+      {/* Weakness Badges */}
+      <div className="flex flex-col items-center border-t border-(--border) pt-4 gap-1">
+        <span className="text-[10px] uppercase font-black text-(--text) tracking-widest">
+          Weaknesses
+        </span>
+        <div className="flex flex-wrap gap-2 justify-center">
+          {pokemon.weaknesses.map((type) => {
+            const styles = getTypeStyles(type);
+            return (
+              <span
+                key={type}
+                style={{ 
+                  backgroundColor: styles.bg, 
+                  color: styles.text, 
+                  borderColor: styles.border 
+                }}
+                className="px-3 py-1 rounded-md border text-[10px] font-black uppercase tracking-tighter"
+              >
+                {type}
+              </span>
+            );
+          })}
+        </div>
+      </div>
 
         <div className="border-t border-(--border) pt-4">
           <h3 className="text-[10px] uppercase font-black text-(--text) mb-2 tracking-widest">
@@ -110,6 +143,7 @@ export const PokemonCard = ({ pokemon }: PokemonCardProps) => {
           />
         </div>
       </div>
+      
     </div>
   );
 };
