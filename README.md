@@ -1,5 +1,12 @@
 # 🚀 PokéDex Fullstack
 
+![.NET 8](https://img.shields.io/badge/.NET%208-512BD4?style=for-the-badge&logo=dotnet&logoColor=white)
+![React](https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB)
+![TypeScript](https://img.shields.io/badge/TypeScript-007ACC?style=for-the-badge&logo=typescript&logoColor=white)
+![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-38B2AC?style=for-the-badge&logo=tailwind-css&logoColor=white)
+![Vite](https://img.shields.io/badge/Vite-646CFF?style=for-the-badge&logo=vite&logoColor=white)
+![C#](https://img.shields.io/badge/C%23-239120?style=for-the-badge&logo=c-sharp&logoColor=white)
+
 Bem-vindo ao repositório da **PokéDex**, uma aplicação fullstack moderna que consome a [PokeAPI](https://pokeapi.co/) para exibir informações detalhadas sobre os Pokémon. Este projeto foi desenvolvido com foco em escalabilidade, manutenibilidade e padrões de arquitetura de mercado.
 
 ---
