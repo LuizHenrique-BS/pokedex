@@ -27,13 +27,12 @@ builder.Services.AddCors(options =>
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
-if (app.Environment.IsDevelopment())
-{
-    app.UseSwagger();
-    app.UseSwaggerUI();
-}
+// Habilitamos o Swagger em todos os ambientes para facilitar o teste inicial do deploy
+app.UseSwagger();
+app.UseSwaggerUI();
 
-app.UseHttpsRedirection();
+// Comentamos o UseHttpsRedirection pois o Render já lida com SSL e redirecionamento de forma externa.
+// app.UseHttpsRedirection();
 
 app.UseAuthorization();
 
