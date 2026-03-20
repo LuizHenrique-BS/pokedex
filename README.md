@@ -15,7 +15,12 @@
 <br/>
 <br/>
 
-Bem-vindo ao repositório da **PokéDex**, uma aplicação fullstack moderna que consome a [PokeAPI](https://pokeapi.co/) para exibir informações detalhadas sobre os Pokémon. Este projeto foi desenvolvido com foco em escalabilidade, manutenibilidade e padrões de arquitetura de mercado.
+Bem-vindo ao repositório da **PokéDex**, uma aplicação fullstack moderna que consome a [PokeAPI](https://pokeapi.co/) para exibir informações detalhadas sobre os Pokémon. Este projeto foi desenvolvido com foco em aprofundar e solidificar conceitos de padrões de arquitetura de mercado.
+
+---
+
+## 🌐 Link da Aplicação
+A aplicação está disponível para acesso web através do link: **[https://pokedex-mu-inky-65.vercel.app/](https://pokedex-mu-inky-65.vercel.app/)**
 
 ---
 
@@ -104,7 +109,7 @@ PokeDex/
 ---
 
 ## 🛡️ Licença
-Este projeto é de código aberto.
+Este projeto é de código aberto (open source).
 
 ---
 
