@@ -1,5 +1,8 @@
 # 🚀 PokéDex BFF
 
+<br/>
+<br/>
+
 <p align="center">
   <img src="https://img.shields.io/badge/.NET%208-512BD4?style=for-the-badge&logo=dotnet&logoColor=white" alt=".NET 8" />
   <img src="https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB" alt="React" />
@@ -8,6 +11,9 @@
   <img src="https://img.shields.io/badge/Vite-646CFF?style=for-the-badge&logo=vite&logoColor=white" alt="Vite" />
   <img src="https://img.shields.io/badge/C%23-239120?style=for-the-badge&logo=c-sharp&logoColor=white" alt="C#" />
 </p>
+
+<br/>
+<br/>
 
 Bem-vindo ao repositório da **PokéDex**, uma aplicação fullstack moderna que consome a [PokeAPI](https://pokeapi.co/) para exibir informações detalhadas sobre os Pokémon. Este projeto foi desenvolvido com foco em escalabilidade, manutenibilidade e padrões de arquitetura de mercado.
 
@@ -98,8 +104,8 @@ PokeDex/
 ---
 
 ## 🛡️ Licença
-Este projeto está sob a licença de código aberto.
+Este projeto é de código aberto.
 
 ---
 
-Desenvolvido com ☕ e ❤️ por [Luiz Barros](https://github.com/LuizHenrique-BS)
+Desenvolvido com ❤️ por [Luiz Barros](https://github.com/LuizHenrique-BS)
