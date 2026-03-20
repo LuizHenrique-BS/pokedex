@@ -10,8 +10,16 @@ export const SearchBar = ({ onSearch, loading }: SearchBarProps) => {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    if (search.trim()) {
-      onSearch(search.toLowerCase());
+    // Normalize search term:
+    // 1. Trim leading/trailing spaces
+    // 2. Replace multiple internal spaces with a single hyphen '-'
+    const normalizedSearch = search
+      .trim()
+      .toLowerCase()
+      .replace(/\s+/g, "-");
+
+    if (normalizedSearch) {
+      onSearch(normalizedSearch);
     }
   };
 
