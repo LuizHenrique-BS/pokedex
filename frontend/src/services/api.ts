@@ -1,7 +1,7 @@
 import axios, { AxiosError } from 'axios';
 
 const api = axios.create({
-  baseURL: "https://localhost:7181/api", // That same API link in launchSettings
+  baseURL: import.meta.env.VITE_API_URL,
 });
 
 export const getPokemon = async (name: string) => {

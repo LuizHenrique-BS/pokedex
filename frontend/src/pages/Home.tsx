@@ -1,6 +1,6 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
+import { useQuery } from "@tanstack/react-query";
 import { getPokemon } from "../services/api";
-import { type PokemonData } from "../interfaces/Pokemon";
 import { SearchBar } from "../components/SearchBar";
 import { PokemonCard } from "../components/PokemonCard";
 import { PokemonExtraInfo } from "../components/PokemonExtraInfo";
@@ -9,48 +9,41 @@ import { ErrorState } from "../components/ErrorState";
 import { PokemonGames } from "../components/PokemonGames";
 
 export const Home = () => {
-  const [pokemon, setPokemon] = useState<PokemonData | null>(null);
-  const [loading, setLoading] = useState(true);
-  const [errorType, setErrorType] = useState<string | null>(null);
+  const [searchTerm, setSearchTerm] = useState("pikachu");
 
-  const fetchData = async (name: string) => {
-    setLoading(true);
-    setErrorType(null);
+  const {
+    data: pokemon,
+    isLoading,
+    isError,
+    error,
+    isFetching,
+  } = useQuery({
+    queryKey: ["pokemon", searchTerm],
+    queryFn: () => getPokemon(searchTerm),
+    retry: false,
+    refetchOnWindowFocus: false,
+  });
 
-    try {
-      const data = await getPokemon(name);
-      setPokemon(data);
-    } catch (err: unknown) {
-      if (err instanceof Error) {
-        setErrorType(err.message); // Here it returns "POKEMON_NOT_FOUND", etc.
-      } else setErrorType("An unexpected error occurred.");
-      setPokemon(null);
-    } finally {
-      setTimeout(() => setLoading(false), 600);
-    }
-  };
-
-  useEffect(() => {
-    fetchData("pikachu");
-  }, []);
+  // Display the loading indicator if the page is loading for the first time or if it is searching for a new term
+  const showLoading = isLoading || isFetching;
 
   return (
     <main className="flex flex-col items-center p-6 gap-8">
-      <SearchBar onSearch={fetchData} loading={loading} />
+      <SearchBar onSearch={setSearchTerm} loading={showLoading} />
 
       {/* 1. LOADING STATE */}
-      {loading && <PokemonCardSkeleton />}
+      {showLoading && <PokemonCardSkeleton />}
 
       {/* 2. ERROR STATE (Only shows if not loading) */}
-      {!loading && errorType && (
+      {!showLoading && isError && (
         <>
           <p className="text-red-500 font-medium animate-bounce">Oops! Something went wrong</p>
-          <ErrorState errorType={errorType} />
+          <ErrorState errorType={error instanceof Error ? error.message : "An unexpected error occurred."} />
         </>
       )}
 
-      {/* 3. SUCESS STATE */}
-      {!loading && !errorType && pokemon && (
+      {/* 3. SUCCESS STATE */}
+      {!showLoading && !isError && pokemon && (
         <>
           <PokemonCard pokemon={pokemon} />
           <PokemonExtraInfo moves={pokemon.moves} alternativeForms={pokemon.alternativeForms} />
