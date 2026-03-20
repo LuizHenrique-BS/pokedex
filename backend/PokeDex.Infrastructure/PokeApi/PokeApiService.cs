@@ -22,12 +22,21 @@ namespace PokeDex.Infrastructure.PokeApi
 
                 if (pokeData == null)
                 {
-                    Console.WriteLine($"No data found for Pokémon: {identifier}");
+                    Console.Error.WriteLine($"No data found for Pokémon: {identifier}");
                     return null;
                 }
 
                 // Request to get the pokémon description and other species-related info
-                var speciesData = await _httpClient.GetFromJsonAsync<PokeSpeciesResponse>($"pokemon-species/{identifier.ToLower()}");
+                // Use pokeData.Species.Name because some pokemon (like varieties) have different species names than their identifier
+                PokeSpeciesResponse? speciesData = null;
+                try 
+                {
+                    speciesData = await _httpClient.GetFromJsonAsync<PokeSpeciesResponse>($"pokemon-species/{pokeData.Species.Name}");
+                }
+                catch (HttpRequestException ex)
+                {
+                    Console.Error.WriteLine($"Error fetching Species data for {pokeData.Species.Name}: {ex.Message}");
+                }
 
                 var weaknesses = await GetWeaknessesAsync(pokeData.Types.Select(t => t.Type.Name).ToList());
 
@@ -61,7 +70,7 @@ namespace PokeDex.Infrastructure.PokeApi
             }
             catch (HttpRequestException ex)
             {
-                Console.WriteLine($"Error fetching Pokémon data: {ex.Message}");
+                Console.Error.WriteLine($"Error fetching Pokémon data: {ex.Message}");
                 return null;
             }
         }

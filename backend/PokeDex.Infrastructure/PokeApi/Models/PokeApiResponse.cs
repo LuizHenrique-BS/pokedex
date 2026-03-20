@@ -30,6 +30,18 @@ namespace PokeDex.Infrastructure.PokeApi.Models
 
         [JsonPropertyName("moves")]
         public List<MoveEntry> Moves { get; set; }
+
+        [JsonPropertyName("species")]
+        public SpeciesEntry Species { get; set; }
+    }
+
+    public class SpeciesEntry
+    {
+        [JsonPropertyName("name")]
+        public string Name { get; set; }
+
+        [JsonPropertyName("url")]
+        public string Url { get; set; }
     }
 
     // Small classes to capture the nested structure of the API response
