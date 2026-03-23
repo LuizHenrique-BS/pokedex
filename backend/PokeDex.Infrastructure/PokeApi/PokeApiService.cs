@@ -65,7 +65,10 @@ namespace PokeDex.Infrastructure.PokeApi
                         .ToList() ?? new List<string>(),
 
                     Generation = speciesData?.Generation?.Name ?? "Unknown",
-                    Weaknesses = weaknesses
+                    Weaknesses = weaknesses,
+                    IsLegendary = speciesData?.IsLegendary ?? false,
+                    IsMythical = speciesData?.IsMythical ?? false,
+                    IsBaby = speciesData?.IsBaby ?? false
                 };
             }
             catch (HttpRequestException ex)

@@ -10,7 +10,6 @@ namespace PokeDex.Domain.Entities
         public int Height { get; set; }
         public int Weight { get; set; }
 
-        // Add the States (HP, Attack...) later
         public string Description { get; set; }
         public List<string> Games { get; set; }
         public Dictionary<string, int> Stats { get; set; }
@@ -18,5 +17,8 @@ namespace PokeDex.Domain.Entities
         public List<string> AlternativeForms { get; set; } = new();
         public string Generation { get; set; } = string.Empty;
         public List<string> Weaknesses { get; set; } = new();
+        public bool IsLegendary { get; set; }
+        public bool IsMythical { get; set; }
+        public bool IsBaby { get; set; }
     }
 }

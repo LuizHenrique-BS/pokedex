@@ -16,5 +16,8 @@ namespace PokeDex.Application.DTOs
         public List<string> AlternativeForms { get; set; } = new();
         public string Generation { get; set; } = string.Empty;
         public List<string> Weaknesses { get; set; } = new();
+        public bool IsLegendary { get; set; }
+        public bool IsMythical { get; set; }
+        public bool IsBaby { get; set; }
     }
 }

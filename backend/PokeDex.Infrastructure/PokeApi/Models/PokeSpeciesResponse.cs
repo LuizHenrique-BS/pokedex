@@ -13,6 +13,15 @@ namespace PokeDex.Infrastructure.PokeApi.Models
 
         [JsonPropertyName("generation")]
         public GenerationDetail Generation { get; set; }
+
+        [JsonPropertyName("is_legendary")]
+        public bool IsLegendary { get; set; }
+
+        [JsonPropertyName("is_mythical")]
+        public bool IsMythical { get; set; }
+
+        [JsonPropertyName("is_baby")]
+        public bool IsBaby { get; set; }
     }
 
     public class GenerationDetail
