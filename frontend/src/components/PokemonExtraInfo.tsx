@@ -3,9 +3,14 @@ import React from 'react';
 interface PokemonExtraInfoProps {
   moves: string[];
   alternativeForms: string[];
+  onFormSelect?: (form: string) => void;
 }
 
-export const PokemonExtraInfo: React.FC<PokemonExtraInfoProps> = ({ moves, alternativeForms }) => {
+export const PokemonExtraInfo: React.FC<PokemonExtraInfoProps> = ({ 
+  moves, 
+  alternativeForms,
+  onFormSelect 
+}) => {
   return (
     <div className="w-full max-w-4xl bg-(--bg) border border-(--border) rounded-3xl p-6 md:p-10 shadow-(--shadow) flex flex-col gap-10 animate-in fade-in slide-in-from-bottom-4 duration-500">
       
@@ -38,12 +43,13 @@ export const PokemonExtraInfo: React.FC<PokemonExtraInfoProps> = ({ moves, alter
         <div className="flex flex-wrap gap-2">
           {alternativeForms.length > 0 ? (
             alternativeForms.map((form) => (
-              <span 
+              <button
                 key={form} 
-                className="px-3 py-1 rounded-full bg-(--social-bg) text-(--accent) text-[11px] font-bold capitalize border border-(--accent-border) hover:bg-(--accent) hover:text-white transition-all cursor-default"
+                onClick={() => onFormSelect?.(form)}
+                className="px-3 py-1 rounded-full bg-(--social-bg) text-(--accent) text-[11px] font-bold capitalize border border-(--accent-border) hover:bg-(--accent) hover:text-white transition-all cursor-pointer"
               >
                 {form.replace(/-/g, ' ')}
-              </span>
+              </button>
             ))
           ) : (
             <p className="text-(--text) text-xs italic">This Pokémon has no known alternative forms.</p>

@@ -46,7 +46,11 @@ export const Home = () => {
       {!showLoading && !isError && pokemon && (
         <>
           <PokemonCard pokemon={pokemon} />
-          <PokemonExtraInfo moves={pokemon.moves} alternativeForms={pokemon.alternativeForms} />
+          <PokemonExtraInfo 
+            moves={pokemon.moves} 
+            alternativeForms={pokemon.alternativeForms} 
+            onFormSelect={setSearchTerm}
+          />
           <PokemonGames games={pokemon?.games} />
         </>
       )}
