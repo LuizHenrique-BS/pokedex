@@ -21,4 +21,7 @@ export interface PokemonData {
   alternativeForms: string[];
   generation: string;
   weaknesses: string[];
+  isLegendary: boolean;
+  isMythical: boolean;
+  isBaby: boolean;
 }

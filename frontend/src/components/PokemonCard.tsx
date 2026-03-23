@@ -10,7 +10,26 @@ export const PokemonCard = ({ pokemon }: PokemonCardProps) => {
   return (
     <div className="w-full max-w-4xl bg-(--bg) border border-(--border) rounded-3xl p-6 md:p-10 shadow-(--shadow) flex flex-col md:flex-row gap-10 animate-in fade-in zoom-in duration-300">
       {/* Left: Image Section */}
-      <div className="flex-1 flex flex-col items-center justify-center min-h-[300px]">
+      <div className="flex-1 flex flex-col items-center justify-center min-h-[300px] relative">
+        {/* Rarity Badges - Top Right of Image Section */}
+        <div className="absolute top-0 right-0 flex flex-col gap-2 z-20">
+          {pokemon.isLegendary && (
+            <span className="px-3 py-1 rounded-lg bg-amber-500/20 text-amber-500 border border-amber-500/50 text-[10px] font-black uppercase tracking-widest backdrop-blur-md shadow-lg shadow-amber-500/10">
+              Legendary
+            </span>
+          )}
+          {pokemon.isMythical && (
+            <span className="px-3 py-1 rounded-lg bg-purple-500/20 text-purple-500 border border-purple-500/50 text-[10px] font-black uppercase tracking-widest backdrop-blur-md shadow-lg shadow-purple-500/10">
+              Mythical
+            </span>
+          )}
+          {pokemon.isBaby && (
+            <span className="px-3 py-1 rounded-lg bg-pink-500/20 text-pink-500 border border-pink-500/50 text-[10px] font-black uppercase tracking-widest backdrop-blur-md shadow-lg shadow-pink-500/10">
+              Baby
+            </span>
+          )}
+        </div>
+        
         <div className="relative flex items-center justify-center w-full h-full">
           {/* Background Glow */}
           <div className="absolute w-40 h-40 bg-(--accent) blur-[80px] opacity-20"></div>
