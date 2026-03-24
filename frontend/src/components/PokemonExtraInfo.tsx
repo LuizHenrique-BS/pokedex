@@ -4,12 +4,14 @@ interface PokemonExtraInfoProps {
   moves: string[];
   alternativeForms: string[];
   onFormSelect?: (form: string) => void;
+  onAlternativeFormClick?: () => void;
 }
 
 export const PokemonExtraInfo: React.FC<PokemonExtraInfoProps> = ({ 
   moves, 
   alternativeForms,
-  onFormSelect 
+  onFormSelect,
+  onAlternativeFormClick 
 }) => {
   return (
     <div className="w-full max-w-4xl bg-(--bg) border border-(--border) rounded-3xl p-6 md:p-10 shadow-(--shadow) flex flex-col gap-10 animate-in fade-in slide-in-from-bottom-4 duration-500">
@@ -45,7 +47,10 @@ export const PokemonExtraInfo: React.FC<PokemonExtraInfoProps> = ({
             alternativeForms.map((form) => (
               <button
                 key={form} 
-                onClick={() => onFormSelect?.(form)}
+                onClick={() => {
+                  onFormSelect?.(form)
+                  onAlternativeFormClick?.()
+                }}
                 className="px-3 py-1 rounded-full bg-(--social-bg) text-(--accent) text-[11px] font-bold capitalize border border-(--accent-border) hover:bg-(--accent) hover:text-white transition-all cursor-pointer"
               >
                 {form.replace(/-/g, ' ')}

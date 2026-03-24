@@ -10,6 +10,7 @@ import { PokemonGames } from "../components/PokemonGames";
 
 export const Home = () => {
   const [searchTerm, setSearchTerm] = useState("pikachu");
+  const [isAltFormSelected, setIsAltFormSelected] = useState(false);
   const pokemonCardRef = useRef<HTMLDivElement>(null);
 
   const {
@@ -25,23 +26,29 @@ export const Home = () => {
     refetchOnWindowFocus: false,
   });
 
+  const handleSearch = (term: string) => {
+    setIsAltFormSelected(false); // Reset if it's a new manual search
+    setSearchTerm(term);
+  };
+
   // Display the loading indicator if the page is loading for the first time or if it is searching for a new term
   const showLoading = isLoading || isFetching;
 
   // Focus and scroll to the pokemon card when data is loaded
   useEffect(() => {
-    if (pokemon && !showLoading) {
+    if (pokemon && !showLoading && isAltFormSelected) {
       const timeoutId = setTimeout(() => {
         pokemonCardRef.current?.focus();
         pokemonCardRef.current?.scrollIntoView({ behavior: "smooth", block: "center" });
+        setIsAltFormSelected(false); // Reset after focusing/scrolling
       }, 100);
       return () => clearTimeout(timeoutId);
     }
-  }, [pokemon, showLoading]);
+  }, [pokemon, showLoading, isAltFormSelected]);
 
   return (
     <main className="flex flex-col items-center p-6 gap-8">
-      <SearchBar onSearch={setSearchTerm} loading={showLoading} />
+      <SearchBar onSearch={handleSearch} loading={showLoading} />
 
       {/* 1. LOADING STATE */}
       {showLoading && <PokemonCardSkeleton />}
@@ -62,6 +69,7 @@ export const Home = () => {
             moves={pokemon.moves} 
             alternativeForms={pokemon.alternativeForms} 
             onFormSelect={setSearchTerm}
+            onAlternativeFormClick={() => setIsAltFormSelected(true)}
           />
           <PokemonGames games={pokemon?.games} />
         </>
