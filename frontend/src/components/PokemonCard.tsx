@@ -44,7 +44,7 @@ export const PokemonCard = forwardRef<HTMLDivElement, PokemonCardProps>(
             <img
               src={pokemon.imageUrl}
               alt={pokemon.name}
-              className="w-full max-w-[250px] aspect-square object-contain z-10 drop-shadow-2xl"
+              className="w-full max-w-[250px] aspect-square object-contain z-10 drop-shadow-2xl transition-transform duration-500 hover:scale-110 cursor-zoom-in"
             />
           </div>
         </div>
