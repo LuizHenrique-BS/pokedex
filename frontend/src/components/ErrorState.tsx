@@ -17,7 +17,7 @@ export const ErrorState = ({ errorType }: ErrorStateProps) => {
     NETWORK_ERROR: {
       emoji: "🔌",
       title: "Connection Failed",
-      text: "Could not connect to the backend. Please check your connection."
+      text: "Could not connect to the backend. Please Try again in a few minutes."
     }
   };
 

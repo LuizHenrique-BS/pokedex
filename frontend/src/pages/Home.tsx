@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useRef, useEffect } from "react";
 import { useQuery } from "@tanstack/react-query";
 import { getPokemon } from "../services/api";
 import { SearchBar } from "../components/SearchBar";
@@ -10,6 +10,7 @@ import { PokemonGames } from "../components/PokemonGames";
 
 export const Home = () => {
   const [searchTerm, setSearchTerm] = useState("pikachu");
+  const pokemonCardRef = useRef<HTMLDivElement>(null);
 
   const {
     data: pokemon,
@@ -26,6 +27,17 @@ export const Home = () => {
 
   // Display the loading indicator if the page is loading for the first time or if it is searching for a new term
   const showLoading = isLoading || isFetching;
+
+  // Focus and scroll to the pokemon card when data is loaded
+  useEffect(() => {
+    if (pokemon && !showLoading) {
+      const timeoutId = setTimeout(() => {
+        pokemonCardRef.current?.focus();
+        pokemonCardRef.current?.scrollIntoView({ behavior: "smooth", block: "center" });
+      }, 100);
+      return () => clearTimeout(timeoutId);
+    }
+  }, [pokemon, showLoading]);
 
   return (
     <main className="flex flex-col items-center p-6 gap-8">
@@ -45,7 +57,7 @@ export const Home = () => {
       {/* 3. SUCCESS STATE */}
       {!showLoading && !isError && pokemon && (
         <>
-          <PokemonCard pokemon={pokemon} />
+          <PokemonCard ref={pokemonCardRef} pokemon={pokemon} />
           <PokemonExtraInfo 
             moves={pokemon.moves} 
             alternativeForms={pokemon.alternativeForms} 
