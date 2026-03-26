@@ -32,6 +32,41 @@ export default defineConfig({
             purpose: 'any'
           }
         ]
+      },
+      workbox: {
+        runtimeCaching: [
+          {
+            urlPattern: ({ url }) => url.pathname.startsWith('/pokemon/'),
+            handler: 'StaleWhileRevalidate',
+            options: {
+              cacheName: 'pokemon-api-cache',
+              expiration: {
+                maxEntries: 100,
+                maxAgeSeconds: 60 * 60 * 24 * 7 // 1 semana
+              },
+              cacheableResponse: {
+                statuses: [0, 200]
+              }
+            }
+          },
+          {
+            urlPattern: ({ url }) => 
+              url.origin.includes('raw.githubusercontent.com') || 
+              url.origin.includes('pokeapi.co') ||
+              url.pathname.match(/\.(?:png|jpg|jpeg|svg|gif)$/),
+            handler: 'CacheFirst',
+            options: {
+              cacheName: 'pokemon-image-cache',
+              expiration: {
+                maxEntries: 500,
+                maxAgeSeconds: 60 * 60 * 24 * 30 // 30 dias
+              },
+              cacheableResponse: {
+                statuses: [0, 200]
+              }
+            }
+          }
+        ]
       }
     })
   ],

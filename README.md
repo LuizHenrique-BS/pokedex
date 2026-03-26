@@ -9,6 +9,7 @@
   <img src="https://img.shields.io/badge/TypeScript-007ACC?style=for-the-badge&logo=typescript&logoColor=white" alt="TypeScript" />
   <img src="https://img.shields.io/badge/Tailwind_CSS-38B2AC?style=for-the-badge&logo=tailwind-css&logoColor=white" alt="Tailwind CSS" />
   <img src="https://img.shields.io/badge/Vite-646CFF?style=for-the-badge&logo=vite&logoColor=white" alt="Vite" />
+  <img src="https://img.shields.io/badge/PWA-005A9C?style=for-the-badge&logo=pwa&logoColor=white" alt="PWA" />
   <img src="https://img.shields.io/badge/C%23-239120?style=for-the-badge&logo=c-sharp&logoColor=white" alt="C#" />
 </p>
 
@@ -16,6 +17,19 @@
 <br/>
 
 Bem-vindo ao repositório da **PokéDex**, uma aplicação fullstack moderna que consome a [PokeAPI](https://pokeapi.co/) para exibir informações detalhadas sobre os Pokémon. Este projeto foi desenvolvido com foco em aprofundar e solidificar conceitos de padrões de arquitetura de mercado.
+
+---
+
+## 📱 PWA (Progressive Web App)
+
+A aplicação foi transformada em um **PWA completo**, permitindo uma experiência nativa em dispositivos móveis e desktops.
+
+- **Instalável:** Pode ser adicionada à tela inicial (Home Screen) do seu smartphone ou instalada como aplicativo no desktop.
+- **Offline First:** Graças ao **Service Worker** e ao **Workbox**, a aplicação funciona sem conexão à internet para dados já consultados.
+- **Caching Inteligente:**
+  - **Dados da API:** Utiliza a estratégia `StaleWhileRevalidate` (entrega o cache instantaneamente e atualiza em segundo plano).
+  - **Imagens e Sprites:** Utiliza a estratégia `CacheFirst` para economizar banda e garantir performance máxima.
+- **Compatibilidade:** Totalmente compatível com iOS (apple-touch-icon) e Android.
 
 ---
 
