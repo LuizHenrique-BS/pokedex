@@ -34,9 +34,13 @@ export default defineConfig({
         ]
       },
       workbox: {
+        globPatterns: ['**/*.{js,css,html,ico,png,svg}'],
+        clientsClaim: true,
+        skipWaiting: true,
         runtimeCaching: [
           {
-            urlPattern: ({ url }) => url.pathname.startsWith('/pokemon/'),
+            // Regex que captura qualquer URL contendo /api/pokemon/ ou apenas /pokemon/
+            urlPattern: /.*\/api\/pokemon\/.*|.*\/pokemon\/.*/i,
             handler: 'StaleWhileRevalidate',
             options: {
               cacheName: 'pokemon-api-cache',
@@ -45,11 +49,16 @@ export default defineConfig({
                 maxAgeSeconds: 60 * 60 * 24 * 7 // 1 semana
               },
               cacheableResponse: {
+                // Status 0 é para respostas opacas (CORS) e 200 para sucesso padrão
                 statuses: [0, 200]
+              },
+              fetchOptions: {
+                mode: 'cors'
               }
             }
           },
           {
+            // Cache para imagens do GitHub (sprites da PokeAPI) e outros arquivos de imagem
             urlPattern: ({ url }) => 
               url.origin.includes('raw.githubusercontent.com') || 
               url.origin.includes('pokeapi.co') ||
