@@ -39,30 +39,12 @@ export default defineConfig({
         skipWaiting: true,
         runtimeCaching: [
           {
-            // Regex que captura qualquer URL contendo /api/pokemon/ ou apenas /pokemon/
-            urlPattern: /.*\/api\/pokemon\/.*|.*\/pokemon\/.*/i,
-            handler: 'StaleWhileRevalidate',
-            options: {
-              cacheName: 'pokemon-api-cache',
-              expiration: {
-                maxEntries: 100,
-                maxAgeSeconds: 60 * 60 * 24 * 7 // 1 semana
-              },
-              cacheableResponse: {
-                // Status 0 é para respostas opacas (CORS) e 200 para sucesso padrão
-                statuses: [0, 200]
-              },
-              fetchOptions: {
-                mode: 'cors'
-              }
-            }
-          },
-          {
             // Cache para imagens do GitHub (sprites da PokeAPI) e outros arquivos de imagem
+            // Colocamos primeiro para garantir que imagens não caiam na regra da API
             urlPattern: ({ url }) => 
               url.origin.includes('raw.githubusercontent.com') || 
               url.origin.includes('pokeapi.co') ||
-              url.pathname.match(/\.(?:png|jpg|jpeg|svg|gif)$/),
+              url.pathname.match(/\.(?:png|jpg|jpeg|svg|gif)$/i),
             handler: 'CacheFirst',
             options: {
               cacheName: 'pokemon-image-cache',
@@ -72,6 +54,23 @@ export default defineConfig({
               },
               cacheableResponse: {
                 statuses: [0, 200]
+              }
+            }
+          },
+          {
+            // Cache para a API (JSON) - Captura /api/pokemon ou /pokemon/ desde que NÃO seja imagem
+            urlPattern: ({ url }) => 
+              (url.pathname.includes('/api/pokemon/')) &&
+              !url.pathname.match(/\.(?:png|jpg|jpeg|svg|gif)$/i),
+            handler: 'StaleWhileRevalidate',
+            options: {
+              cacheName: 'pokemon-api-cache',
+              expiration: {
+                maxEntries: 100,
+                maxAgeSeconds: 60 * 60 * 24 * 7 // 1 semana
+              },
+              cacheableResponse: {
+                statuses: [200]
               }
             }
           }
