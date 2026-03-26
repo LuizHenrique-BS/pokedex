@@ -17,7 +17,8 @@ builder.Services.AddCors(options =>
         policy.WithOrigins(
                 "https://pokedex-mu-inky-65.vercel.app", 
                 "http://localhost:5173", 
-                "https://localhost:5173"
+                "https://localhost:5173",
+                "http://localhost:4173"
             )
             .AllowAnyHeader()
             .AllowAnyMethod();
