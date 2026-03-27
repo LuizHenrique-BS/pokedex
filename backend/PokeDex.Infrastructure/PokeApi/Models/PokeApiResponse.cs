@@ -51,6 +51,24 @@ namespace PokeDex.Infrastructure.PokeApi.Models
     {
         [JsonPropertyName("move")]
         public MoveDetail Move { get; set; }
+
+        [JsonPropertyName("version_group_details")]
+        public List<VersionGroupDetail> VersionGroupDetails { get; set; }
+    }
+
+    public class VersionGroupDetail
+    {
+        [JsonPropertyName("level_learned_at")]
+        public int LevelLearnedAt { get; set; }
+
+        [JsonPropertyName("move_learn_method")]
+        public MoveLearnMethod MoveLearnMethod { get; set; }
+    }
+
+    public class MoveLearnMethod
+    {
+        [JsonPropertyName("name")]
+        public string Name { get; set; }
     }
 
     public class MoveDetail 

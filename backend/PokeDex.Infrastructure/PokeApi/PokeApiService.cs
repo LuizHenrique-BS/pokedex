@@ -57,7 +57,19 @@ namespace PokeDex.Infrastructure.PokeApi
                         .FirstOrDefault(f => f.Language.Name == "en")?.FlavorText
                         ?? "No description available.",
 
-                    Moves = pokeData.Moves.Take(10).Select(m => m.Move.Name).ToList(),
+                    Moves = pokeData.Moves
+                        .Where(m => m.VersionGroupDetails.Any(vgd => vgd.MoveLearnMethod.Name == "level-up"))
+                        .Select(m => new
+                        {
+                            Name = m.Move.Name,
+                            Level = m.VersionGroupDetails
+                                .Where(vgd => vgd.MoveLearnMethod.Name == "level-up")
+                                .Max(vgd => vgd.LevelLearnedAt)
+                        })
+                        .OrderByDescending(m => m.Level)
+                        .Take(10)
+                        .Select(m => m.Name)
+                        .ToList(),
 
                     AlternativeForms = speciesData?.Varieties
                         .Where(v => !v.IsDefault)
