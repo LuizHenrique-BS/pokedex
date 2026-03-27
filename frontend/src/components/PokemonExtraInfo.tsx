@@ -19,7 +19,7 @@ export const PokemonExtraInfo: React.FC<PokemonExtraInfoProps> = ({
       {/* Moves Section */}
       <div>
         <h3 className="text-sm uppercase font-black text-(--text) mb-6 tracking-widest border-b border-(--border) pb-2">
-          Some Attacks
+          Main Attacks
         </h3>
         <div className="flex flex-wrap gap-2">
           {moves.length > 0 ? (
