@@ -20,7 +20,7 @@ export interface PokemonData {
   moves: string[];
   alternativeForms: string[];
   generation: string;
-  weaknesses: string[];
+  damageRelations: { [key: string]: number };
   isLegendary: boolean;
   isMythical: boolean;
   isBaby: boolean;

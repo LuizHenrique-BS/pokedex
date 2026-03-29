@@ -1,7 +1,9 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import { forwardRef } from "react";
 import type { PokemonData } from "../interfaces/Pokemon";
 import { StatBar } from "./StatBar";
 import { getTypeStyles } from "../constants/typeColors";
+import { getResistanceMultiplierText } from "../utils/pokemonFormatters";
 
 interface PokemonCardProps {
   pokemon: PokemonData;
@@ -89,28 +91,77 @@ export const PokemonCard = forwardRef<HTMLDivElement, PokemonCardProps>(
             </div>
           </div>
         
-          {/* Weakness Badges */}
-          <div className="flex flex-col items-center border-t border-(--border) pt-4 gap-1">
-            <span className="text-[10px] uppercase font-black text-(--text) tracking-widest">
-              Weaknesses
-            </span>
-            <div className="flex flex-wrap gap-2 justify-center">
-              {pokemon.weaknesses.map((type) => {
-                const styles = getTypeStyles(type);
-                return (
-                  <span
-                    key={type}
-                    style={{ 
-                      backgroundColor: styles.bg, 
-                      color: styles.text, 
-                      borderColor: styles.border 
-                    }}
-                    className="px-3 py-1 rounded-md border text-[10px] font-black uppercase tracking-tighter"
-                  >
-                    {type}
-                  </span>
-                );
-              })}
+          {/* Damage Relations Section */}
+          <div className="flex flex-col border-t border-(--border) pt-6 gap-6">
+            {/* Weaknesses */}
+            <div className="flex flex-col items-center gap-2">
+              <span className="text-[10px] uppercase font-black text-(--text) tracking-widest">
+                Weaknesses
+              </span>
+              <div className="flex flex-wrap gap-3 justify-center">
+                {Object.entries(pokemon.damageRelations)
+                  .filter(([_, multiplier]) => multiplier > 1)
+                  .sort(([_, a], [__, b]) => b - a)
+                  .map(([type, multiplier]) => {
+                    const styles = getTypeStyles(type);
+                    return (
+                      <div key={type} className="flex items-center gap-1.5">
+                        <span
+                          style={{ 
+                            backgroundColor: styles.bg, 
+                            color: styles.text, 
+                            borderColor: styles.border 
+                          }}
+                          className="px-3 py-1 rounded-md border text-[10px] font-black uppercase tracking-tighter"
+                        >
+                          {type}
+                        </span>
+                        {multiplier === 4 && (
+                          <span className="text-[10px] font-black text-rose-500 bg-rose-500/10 border border-rose-500/20 px-1 rounded">
+                            4x
+                          </span>
+                        )}
+                      </div>
+                    );
+                  })}
+              </div>
+            </div>
+
+            {/* Resistances & Immunities */}
+            <div className="flex flex-col items-center gap-2">
+              <span className="text-[10px] uppercase font-black text-(--text) tracking-widest">
+                Resistances & Immunities
+              </span>
+              <div className="flex flex-wrap gap-3 justify-center">
+                {Object.entries(pokemon.damageRelations)
+                  .filter(([_, multiplier]) => multiplier < 1)
+                  .sort(([_, a], [__, b]) => a - b)
+                  .map(([type, multiplier]) => {
+                    const styles = getTypeStyles(type);
+                    return (
+                      <div key={type} className="flex items-center gap-1.5">
+                        <span
+                          style={{ 
+                            backgroundColor: styles.bg, 
+                            color: styles.text, 
+                            borderColor: styles.border 
+                          }}
+                          className="px-3 py-1 rounded-md border text-[10px] font-black uppercase tracking-tighter"
+                        >
+                          {type}
+                        </span>
+                        {
+                          multiplier <= 0.25 
+                          ?
+                            <span className="text-[9px] font-black text-emerald-500 bg-emerald-500/10 border border-emerald-500/20 px-1 rounded">
+                              {getResistanceMultiplierText(multiplier)}
+                            </span>
+                          : null
+                        }
+                      </div>
+                    );
+                  })}
+              </div>
             </div>
           </div>
 

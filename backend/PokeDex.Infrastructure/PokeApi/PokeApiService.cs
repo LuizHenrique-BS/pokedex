@@ -38,7 +38,7 @@ namespace PokeDex.Infrastructure.PokeApi
                     Console.Error.WriteLine($"Error fetching Species data for {pokeData.Species.Name}: {ex.Message}");
                 }
 
-                var weaknesses = await GetWeaknessesAsync(pokeData.Types.Select(t => t.Type.Name).ToList());
+                var damageRelations = await GetDamageRelationsAsync(pokeData.Types.Select(t => t.Type.Name).ToList());
 
                 return new PokemonEntity
                 {
@@ -67,7 +67,7 @@ namespace PokeDex.Infrastructure.PokeApi
                                 .Max(vgd => vgd.LevelLearnedAt)
                         })
                         .OrderByDescending(m => m.Level)
-                        .Take(10)
+                        .Take(9)
                         .Select(m => m.Name)
                         .ToList(),
 
@@ -77,7 +77,7 @@ namespace PokeDex.Infrastructure.PokeApi
                         .ToList() ?? new List<string>(),
 
                     Generation = speciesData?.Generation?.Name ?? "Unknown",
-                    Weaknesses = weaknesses,
+                    DamageRelations = damageRelations,
                     IsLegendary = speciesData?.IsLegendary ?? false,
                     IsMythical = speciesData?.IsMythical ?? false,
                     IsBaby = speciesData?.IsBaby ?? false
@@ -90,7 +90,7 @@ namespace PokeDex.Infrastructure.PokeApi
             }
         }
 
-        private async Task<List<string>> GetWeaknessesAsync(List<string> types)
+        private async Task<Dictionary<string, double>> GetDamageRelationsAsync(List<string> types)
         {
             var damageMultipliers = new Dictionary<string, double>();
 
@@ -119,9 +119,8 @@ namespace PokeDex.Infrastructure.PokeApi
             }
 
             return damageMultipliers
-                .Where(kvp => kvp.Value > 1.0)
-                .Select(kvp => kvp.Key)
-                .ToList();
+                .Where(kvp => kvp.Value != 1.0)
+                .ToDictionary(kvp => kvp.Key, kvp => kvp.Value);
         }
 
         public async Task<object> GetPokemonListAsync(int limit, int offset)

@@ -34,7 +34,7 @@ namespace PokeDex.Application.Services
                 Moves = entity.Moves,
                 AlternativeForms = entity.AlternativeForms,
                 Generation = FormatGeneration(entity.Generation),
-                Weaknesses = entity.Weaknesses,
+                DamageRelations = entity.DamageRelations,
                 IsLegendary = entity.IsLegendary,
                 IsMythical = entity.IsMythical,
                 IsBaby = entity.IsBaby
