@@ -13,7 +13,7 @@ export default defineConfig({
       includeAssets: ['favicon.svg', 'icons.svg', 'apple-touch-icon.png', 'icon-512.png'],
       manifest: {
         name: 'PokéDex BFF',
-        short_name: 'PokéDex',
+        short_name: 'PokéDex BFF',
         description: 'A modern PokéDex with a BFF backend',
         theme_color: '#aa3bff',
         background_color: '#ffffff',
