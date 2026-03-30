@@ -16,7 +16,7 @@
 <br/>
 <br/>
 
-Bem-vindo ao repositório da **PokéDex**, uma aplicação fullstack moderna que consome a [PokeAPI](https://pokeapi.co/) para exibir informações detalhadas sobre os Pokémon. Este projeto foi desenvolvido com foco em aprofundar e solidificar conceitos de padrões de arquitetura de mercado.
+Bem-vindo ao repositório da **PokéDex BFF**, uma aplicação fullstack moderna que consome a [PokeAPI](https://pokeapi.co/) para exibir informações detalhadas sobre os Pokémon. Este projeto foi desenvolvido com foco em aprofundar e solidificar conceitos de padrões de arquitetura de mercado.
 
 ---
 

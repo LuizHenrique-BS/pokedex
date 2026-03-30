@@ -48,6 +48,11 @@ export const Home = () => {
 
   return (
     <main className="flex flex-col items-center p-6 gap-8">
+      {/* Dinamic SEO with React 19 */}
+      <title>{pokemon ? `PokéDex - ${pokemon.name.charAt(0).toUpperCase() + pokemon.name.slice(1)}` : 'PokéDex'}</title>
+      <meta name="description" content={pokemon ? `Learn all about ${pokemon.name}: stats, moves, types, and more in this modern PokéDex.` : "Search for your favorite Pokémon and see their detailed stats."} />
+      <link rel="canonical" href={window.location.origin} />
+
       <SearchBar onSearch={handleSearch} loading={showLoading} />
 
       {/* 1. LOADING STATE */}
