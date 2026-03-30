@@ -20,16 +20,14 @@ Bem-vindo ao repositório da **PokéDex**, uma aplicação fullstack moderna que
 
 ---
 
-## 📱 PWA (Progressive Web App)
-
-A aplicação foi transformada em um **PWA completo**, permitindo uma experiência nativa em dispositivos móveis e desktops.
-
-- **Instalável:** Pode ser adicionada à tela inicial (Home Screen) do seu smartphone ou instalada como aplicativo no desktop.
-- **Offline First:** Graças ao **Service Worker** e ao **Workbox**, a aplicação funciona sem conexão à internet para dados já consultados.
-- **Caching Inteligente:**
-  - **Dados da API:** Utiliza a estratégia `StaleWhileRevalidate` (entrega o cache instantaneamente e atualiza em segundo plano).
-  - **Imagens e Sprites:** Utiliza a estratégia `CacheFirst` para economizar banda e garantir performance máxima.
-- **Compatibilidade:** Totalmente compatível com iOS (apple-touch-icon) e Android.
+## 📌 Sumário
+- [🌐 Link da Aplicação](#-link-da-aplicação)
+- [🏗️ Arquitetura do Projeto](#️-arquitetura-do-projeto)
+- [🛠️ Tecnologias Utilizadas](#️-tecnologias-utilizadas)
+- [📱 PWA (Progressive Web App)](#-pwa-progressive-web-app)
+- [🚀 Como Executar o Projeto](#-como-executar-o-projeto)
+- [📄 Estrutura de Pastas](#-estrutura-de-pastas)
+- [🛡️ Licença](#️-licença)
 
 ---
 
@@ -71,6 +69,19 @@ Uma interface rápida e responsiva construída com as ferramentas mais modernas 
 - Tailwind CSS
 - Lucide React (Ícones)
 - Axios / Fetch API
+
+---
+
+## 📱 PWA (Progressive Web App)
+
+A aplicação foi transformada em um **PWA completo**, permitindo uma experiência nativa em dispositivos móveis e desktops.
+
+- **Instalável:** Pode ser adicionada à tela inicial (Home Screen) do seu smartphone ou instalada como aplicativo no desktop.
+- **Offline First:** Graças ao **Service Worker** e ao **Workbox**, a aplicação funciona sem conexão à internet para dados já consultados.
+- **Caching Inteligente:**
+  - **Dados da API:** Utiliza a estratégia `StaleWhileRevalidate` (entrega o cache instantaneamente e atualiza em segundo plano).
+  - **Imagens e Sprites:** Utiliza a estratégia `CacheFirst` para economizar banda e garantir performance máxima.
+- **Compatibilidade:** Totalmente compatível com iOS (apple-touch-icon) e Android.
 
 ---
 
