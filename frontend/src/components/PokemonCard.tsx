@@ -185,6 +185,7 @@ export const PokemonCard = forwardRef<HTMLDivElement, PokemonCardProps>(
             </div>
           </div>
 
+          {/* BASE STATS */}
           <div>
             <h3 className="text-sm uppercase font-black text-(--text) mb-4 tracking-widest">
               Base Stats
@@ -219,6 +220,20 @@ export const PokemonCard = forwardRef<HTMLDivElement, PokemonCardProps>(
               value={pokemon?.stats?.speed}
               colorClass="bg-pink-500"
             />
+            
+            <div className="flex justify-between items-center pt-2 mt-2 border-t border-(--border)">
+              <span className="text-xs font-black uppercase text-(--text) tracking-widest">
+                Total
+              </span>
+              <span className="text-sm font-mono font-black text-(--text-h)">
+                {(pokemon?.stats?.hp ?? 0) +
+                  (pokemon?.stats?.attack ?? 0) +
+                  (pokemon?.stats?.defense ?? 0) +
+                  (pokemon?.stats?.["special-attack"] ?? 0) +
+                  (pokemon?.stats?.["special-defense"] ?? 0) +
+                  (pokemon?.stats?.speed ?? 0)}
+              </span>
+            </div>
           </div>
         </div>
         
